@@ -71,7 +71,7 @@ The multimeter uses the *ATT_HandleValueNoti* notification, wrapped into an L2CA
 
 - First two bytes: Unit and decimal places
 
-   We read the first two bytes as a little-endian `uint16_t` value. Its uppermost 13 bytes encode the unit of the current value, including information about AC/DC, continuity and diode test. Check the comments on the `ow_unit_t` enum in **ow18b.h** for the constants. Bit 2 (OF) indicates if the value is an overflow (1) or not (0). In the overflow case, bit 0 and 1 seem to be always 1, but I don't check that explicitly. If we don't deal with an overflow, bit 0 and 1 indicate the position of the decimal point (no point / one place behind / two places behind / three places behind).
+   We read the first two bytes as a little-endian `uint16_t` value. Its uppermost 13 bits encode the unit of the current value, including information about AC/DC, continuity and diode test. Check the comments on the `ow_unit_t` enum in **ow18b.h** for the constants. Bit 2 (OF) indicates if the value is an overflow (1) or not (0). In the overflow case, bit 0 and 1 seem to be always 1, but I don't check that explicitly. If we don't deal with an overflow, bit 0 and 1 indicate the position of the decimal point (no point / one place behind / two places behind / three places behind).
 - Third byte: Flags
 
     - Bit 0: Data hold mode (DHM)
